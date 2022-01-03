@@ -3,9 +3,12 @@ package com.dh.meli.diploma.controller;
 import com.dh.meli.diploma.entity.Aluno;
 import com.dh.meli.diploma.service.AlunoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.validation.Valid;
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -16,9 +19,10 @@ public class AlunoController {
     AlunoService alunoService;
 
     @PostMapping("/cadastra")
-    public Aluno cadastrarAluno(@RequestBody @Valid Aluno aluno){
+    public ResponseEntity<Aluno> cadastrarAluno(@RequestBody @Valid Aluno aluno, UriComponentsBuilder uriBuilder){
         alunoService.adicionaAluno(aluno);
-        return aluno;
+        URI uri = uriBuilder.path("/exibirAluno/{nome}").buildAndExpand(aluno.getNome()).toUri();
+        return ResponseEntity.created(uri).body(new Aluno(aluno));
     }
 
     @GetMapping("/exibirAlunos")

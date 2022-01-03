@@ -20,6 +20,13 @@ public class Aluno{
         this.listaDisciplinas = listaDisciplinas;
     }
 
+    public  Aluno(Aluno aluno){
+        this.nome = aluno.getNome();
+        this.endereco = aluno.getEndereco();
+        this.idade = aluno.getIdade();
+        this.listaDisciplinas = aluno.getListaDisciplinas();
+    }
+
     public String getNome() {
         return nome;
     }
