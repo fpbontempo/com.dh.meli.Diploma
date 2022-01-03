@@ -2,11 +2,15 @@ package com.dh.meli.diploma.entity;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.util.List;
 
 public class Aluno{
-    @NotNull @NotEmpty @Size(min = 3, message = "tamanho para um nome é no minimo 3")
+    @NotNull
+    @NotEmpty
+    @Size(min = 8, max = 50, message = "tamanho para um nome é no minimo 8")
+    @Pattern(regexp = "^[A-Za-z ]*$", message = "Deve conter apenas letras")
     private String nome;
     private String endereco;
     private int idade;
