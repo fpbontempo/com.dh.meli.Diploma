@@ -1,11 +1,16 @@
 package com.dh.meli.diploma.entity;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.List;
 
 public class Aluno{
+    @NotNull @NotEmpty @Size(min = 3, message = "tamanho para um nome é no minimo 3")
     private String nome;
     private String endereco;
     private int idade;
+    @NotNull @NotEmpty @Size(min = 3, message = "Um aluno precisa estar em no minimo 3 disciplinas")
     private List<Disciplina> listaDisciplinas;
 
     public Aluno(String nome, String endereco, int idade, List<Disciplina> listaDisciplinas) {
