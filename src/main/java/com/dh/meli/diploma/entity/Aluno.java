@@ -1,5 +1,8 @@
 package com.dh.meli.diploma.entity;
 
+import org.springframework.validation.annotation.Validated;
+
+import javax.validation.Valid;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -14,7 +17,10 @@ public class Aluno{
     private String nome;
     private String endereco;
     private int idade;
-    @NotNull @NotEmpty @Size(min = 3, message = "Um aluno precisa estar em no minimo 3 disciplinas")
+    @NotNull
+    @NotEmpty
+    @Size(min = 3, message = "Um aluno precisa estar em no minimo 3 disciplinas")
+
     private List<Disciplina> listaDisciplinas;
 
     public Aluno(String nome, String endereco, int idade, List<Disciplina> listaDisciplinas) {
