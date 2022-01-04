@@ -10,17 +10,17 @@ import javax.validation.constraints.Size;
 import java.util.List;
 
 public class Aluno{
-    @NotNull
+
     @NotEmpty
     @Size(min = 8, max = 50, message = "tamanho para um nome é no minimo 8")
     @Pattern(regexp = "^[A-Za-z ]*$", message = "Deve conter apenas letras")
     private String nome;
     private String endereco;
     private int idade;
-    @NotNull
+
     @NotEmpty
     @Size(min = 3, message = "Um aluno precisa estar em no minimo 3 disciplinas")
-
+    @Valid
     private List<Disciplina> listaDisciplinas;
 
     public Aluno(String nome, String endereco, int idade, List<Disciplina> listaDisciplinas) {

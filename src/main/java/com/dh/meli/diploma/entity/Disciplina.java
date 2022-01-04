@@ -1,9 +1,6 @@
 package com.dh.meli.diploma.entity;
 
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 
 public class Disciplina {
     @NotNull
@@ -11,10 +8,11 @@ public class Disciplina {
     @Size(min = 8, max = 50, message = "tamanho para um nome/descricao é no minimo 8")
     @Pattern(regexp = "^[A-Za-z ]*$", message = "Deve conter apenas letras")
     private String descricao;
-    @NotNull
-    @NotEmpty
-    @Size(min = 1, max = 2, message = "minimo de 1 e máximo de 2 digitos")
-    @Pattern(regexp = "^(-([1-9]\\d*\\.\\d*|0\\.\\d*[1-9]\\d*))|0?\\.0+|0$", message = "Deve conter apenas números")
+
+    @NotNull(message = "nota da disciplina é obrigatória")
+    @Max(value = 10, message = "Nota não pode ser maior que 10")
+    @Min(value = 0, message = "Nota não pode ser menor que 0")
+    @Digits(integer = 2, fraction = 2, message = "Nota não válida. Aceito apenas de 0 a 10, com 2 dígitos decimais")
     private Double nota;
 
     public Disciplina(String descricao, Double nota) {
